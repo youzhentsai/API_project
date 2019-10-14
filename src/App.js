@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import cat from './cat.png';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+class App extends Component{
+  constructor() {
+    super();
+    this.state = {
+      content: "ok"
+    };
+  }
+
+  click1 = () => {
+    this.updateStats();
+    this.loadFacts();
+  }
+
+  async loadFacts(){
+    const json1 = await fetch ("cat-fact.herokuapp.com/facts/random?animal_type=cat");
+    this.setState({
+      content: json1.text
+    })
+  }
+
+  updateStats(){
+    this.setState({
+      content: this.state.content
+    })
+  }
+
+  async componentDidMount(){
+    this.loadFacts();
+  }
+
+
+  render() {
+    return(
+      <div className="App">
+      <div className="button-row">
+          <button className='button' onClick={this.click1}>
+              Meow
+          </button>
+      </div>
+      <div className="box">
+      </div>
+      <div className="fact">
+        {this.state.content}
+      </div>
+      <img className="pic" src={cat} alt="cat"/>
+      </div>
+    )
+  }
+}
 export default App;
