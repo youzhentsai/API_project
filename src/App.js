@@ -7,7 +7,7 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      content: "ok"
+      content: "",
     };
   }
 
@@ -17,10 +17,15 @@ class App extends Component{
   }
 
   async loadFacts(){
-    const json1 = await fetch ("cat-fact.herokuapp.com/facts/random?animal_type=cat");
+    const json1 = await fetch(
+      "https://cors-anywhere.herokuapp.com/https://catfact.ninja/fact"
+    );
+    console.log(json1);
+    const text = await json1.json();
+    console.log(text);
     this.setState({
-      content: json1.text
-    })
+      content: text.fact
+    });
   }
 
   updateStats(){
@@ -41,8 +46,6 @@ class App extends Component{
           <button className='button' onClick={this.click1}>
               Meow
           </button>
-      </div>
-      <div className="box">
       </div>
       <div className="fact">
         {this.state.content}

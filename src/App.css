@@ -21,20 +21,10 @@
   height: 200px;
 }
 
-.box{
-  position: relative;
-  top: 150px;
-  left: 560px;
-  height: 250;
-  width: 550;
-  color: white;
-}
-
 .fact{
-  position: absolute;
-  width: 605px;
-  height: 348px;
-  top: 500px;
-  left: 600px;
-  top: 190px;
+  position: relative;
+  left: 525px;
+  width: 400px;
+  height: 181px;
+  font-size: 18px;
 }
